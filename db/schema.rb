@@ -37,10 +37,11 @@ ActiveRecord::Schema.define(version: 20151128121733) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
 
   create_table "wishlist_items", force: :cascade do |t|
-    t.string   "Title"
+    t.string   "title"
     t.float    "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "wishlist_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "wishlists", force: :cascade do |t|

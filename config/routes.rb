@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :wishlists
+  resources :wishlists do
+    resources :wishlist_items
+  end
   resources :posts, only: [:index, :show]
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

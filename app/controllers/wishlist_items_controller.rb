@@ -6,7 +6,7 @@ class WishlistItemsController < ApplicationController
 
   # GET /wishlists/1
   def show
-      @wishlist_item = WishlistItems.find(params[:id])
+    @wishlist_item = WishlistItems.find(params[:id])
   end
 
   def edit
@@ -29,11 +29,9 @@ class WishlistItemsController < ApplicationController
     end
   end
 
-
-
   # DELETE /wishlists/1
   def destroy
-    @wishlist_item.destroy
+    WishlistItem.find_by(wishlist_id: params[:wishlist_id], id: params[:id]).destroy
     redirect_to wishlists_url, notice: 'Wishlist Item was successfully destroyed.'
   end
 private

@@ -20,6 +20,4 @@
   <%= @wishlist.is_public %>
 </p>
 
-<%= link_to 'Edit', edit_wishlist_path(@wishlist) %> |
-<%= link_to 'Back', wishlists_path %> |
-<%= link_to 'Add item', new_wishlist_wishlist_item_path(@wishlist) %>
+<%= link_to 'Back', wishlists_path(@wishlist) %>

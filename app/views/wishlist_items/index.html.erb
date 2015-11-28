@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing wishlist items</h1>
+<% @wishlist_items.each do |wishlist_item| %>
+<div class="wishlist-box">
+<%= link_to wishlist do %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= wishlist_item.title %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= wishlist_item.price %></td>
+      </tr>
+    </tbody>
+  </table>
+
+    <!-- <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @wishlists.each do |wishlist| %>
+          <tr>
+            <td><%= wishlist.user_id %></td>
+            <td><%= wishlist.title %></td>
+            <td><%= wishlist.description %></td>
+            <td><%= wishlist.is_public %></td>
+            <td><%= link_to 'Show', wishlist %></td>
+            <td><%= link_to 'Edit', edit_wishlist_path(wishlist) %></td>
+            <td><%= link_to 'Destroy', wishlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table> -->
+<% end %>
+  </div>
+<% end %>
+<br>
+
+<%= link_to 'New wishlist item', new_wishlist_wishlist_item_path %>

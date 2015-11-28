@@ -4,7 +4,7 @@ class CreateWishlists < ActiveRecord::Migration
       t.integer :user_id
       t.string :title
       t.text :description
-      t.bool :is_public
+      t.boolean :is_public
 
       t.timestamps null: false
     end

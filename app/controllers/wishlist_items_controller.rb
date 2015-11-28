@@ -19,7 +19,7 @@ class WishlistItemsController < ApplicationController
     @wishlist_item = WishlistItem.new(wishlist_item_params)
 
     if @wishlist_item.save
-      redirect_to @wishlist_item, notice: 'Item was successfully created.'
+      redirect_to wishlists_url, notice: 'Item was successfully created.'
     else
       render :new
     end

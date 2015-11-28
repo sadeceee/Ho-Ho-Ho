@@ -1,0 +1,7 @@
+<h1>Editing wishlist item</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @wishlist_item %> |
+<%= link_to 'Destroy', @wishlist_item, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', wishlists_path %>

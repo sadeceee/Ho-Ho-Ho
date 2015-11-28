@@ -20,6 +20,16 @@
   <%= @wishlist.is_public %>
 </p>
 
+<p>
+  <strong> Items:</strong>
+</p>
+
+<ul>
+  <% @wishlist.wishlist_items.each do |witem| %>
+    <li><b><%=witem.title%>:</b> <%=witem.price%>  </li>
+  <% end %>
+</ul>
+
 <%= link_to 'Edit', edit_wishlist_path(@wishlist) %> |
 <%= link_to 'Back', wishlists_path %> |
 <%= link_to 'Add item', new_wishlist_wishlist_item_path(@wishlist) %>

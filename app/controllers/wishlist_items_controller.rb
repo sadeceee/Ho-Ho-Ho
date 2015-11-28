@@ -9,6 +9,9 @@ class WishlistItemsController < ApplicationController
       @wishlist_item = WishlistItems.find(params[:id])
   end
 
+  def edit
+  end
+
   # GET /wishlists/new
   def new
     @wishlist_item = WishlistItem.new

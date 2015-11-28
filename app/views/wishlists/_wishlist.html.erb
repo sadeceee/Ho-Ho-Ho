@@ -13,16 +13,14 @@
                 <tbody>
                 <tr>
                   <td><%= wishlist.description %></td>
+                </tr>
                   <hr>
-                  <td>
-                  <%= wishlist.getAllItems.each do |witem| %>
+                  <% wishlist.wishlist_items.each do |witem| %>
                     <tr>
-                      <span>witem.title</span>
-                      <span>witem.price</span>
+                      <td><%=witem.title%></td>
+                      <td><%=witem.price%></td>
                     </tr>
                   <% end %>
-                  </td>
-                </tr>
                 </tbody>
               </table>
           <% end %>

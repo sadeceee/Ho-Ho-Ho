@@ -7,7 +7,7 @@
               <table>
                 <thead>
                 <tr>
-                  <th><%= wishlist.title %></th>
+                  <th><%= wishlist.title %> (<%= number_to_currency(wishlist.get_wishlist_sum) %>)</th>
                 </tr>
                 </thead>
                 <tbody>

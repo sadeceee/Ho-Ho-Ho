@@ -16,7 +16,8 @@ class WishlistItemsController < ApplicationController
 
   # POST /wishlists
   def create
-    @wishlist_item = WishlistItem.new(wishlist_item_params)
+    wishlist_param = { wishlist_id: params.require(:wishlist_id) }
+    @wishlist_item = WishlistItem.new(wishlist_item_params.merge(wishlist_param))
 
     if @wishlist_item.save
       redirect_to wishlists_url, notice: 'Item was successfully created.'
@@ -34,6 +35,6 @@ class WishlistItemsController < ApplicationController
   end
 private
   def wishlist_item_params
-    params.require(:wishlist_item).permit(:title, :price, :wishlist_id)
+    params.require(:wishlist_item).permit(:title, :price)
   end
 end

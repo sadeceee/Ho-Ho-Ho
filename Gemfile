@@ -7,6 +7,9 @@ gem 'rails', '4.2.5'
 # Internationalization for rails
 gem 'rails-i18n'
 
+# We need this for Windows environments
+gem 'tzinfo-data'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 

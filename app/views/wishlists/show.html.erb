@@ -20,6 +20,8 @@
   <%= @wishlist.is_public %>
 </p>
 
+<% if current_user && (current_user.id == @wishlist.user_id)  %>
 <%= link_to 'Edit', edit_wishlist_path(@wishlist) %> |
-<%= link_to 'Back', wishlists_path %> |
-<%= link_to 'Add item', new_wishlist_wishlist_item_path(@wishlist) %>
+<%= link_to 'Add item', new_wishlist_wishlist_item_path(@wishlist) %> |
+<% end %>
+<%= link_to 'Back', wishlists_path %>

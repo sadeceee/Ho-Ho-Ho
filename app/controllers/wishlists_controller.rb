@@ -22,6 +22,7 @@ class WishlistsController < ApplicationController
   # POST /wishlists
   def create
     @wishlist = Wishlist.new(wishlist_params)
+    @wishlist.user_id = current_user.id if current_user
 
     if @wishlist.save
       redirect_to @wishlist, notice: 'Wishlist was successfully created.'
@@ -53,6 +54,6 @@ class WishlistsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def wishlist_params
-      params.require(:wishlist).permit(:user_id, :title, :description, :is_public)
+      params.require(:wishlist).permit(:title, :description, :is_public)
     end
 end

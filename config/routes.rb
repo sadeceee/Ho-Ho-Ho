@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+  get 'users/:id/user_wishlists' => 'users#user_wishlists', as: 'user_wishlists'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

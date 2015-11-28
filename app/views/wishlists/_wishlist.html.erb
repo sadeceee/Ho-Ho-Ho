@@ -1,33 +1,27 @@
-<div class="row">
-  <% @wishlists.each do |wishlist| %>
-      <div class="col-md-4">
-        <div class="wishlist-box">
 
-          <%= link_to wishlist do %>
-              <table>
-                <thead>
-                <tr>
-                  <th><%= wishlist.title %></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td><%= wishlist.description %></td>
-                </tr>
-                  <hr>
-                  <% wishlist.wishlist_items.each do |witem| %>
-                    <tr>
-                      <td><%=witem.title%></td>
-                      <td><%=witem.price%></td>
-                    </tr>
-                  <% end %>
-                </tbody>
-              </table>
-          <% end %>
-        </div>
-      </div>
-  <% end %>
+<div class="col-md-4">
+  <div class="wishlist-box">
+
+    <%= link_to wishlist do %>
+        <table>
+          <thead>
+          <tr>
+            <th><%= wishlist.title %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><%= wishlist.description %></td>
+          </tr>
+            <hr>
+            <% wishlist.wishlist_items.each do |witem| %>
+              <tr>
+                <td><%=witem.title%></td>
+                <td><%=witem.price%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    <% end %>
+  </div>
 </div>
-<br>
-
-<%= link_to 'New Wishlist', new_wishlist_path %>

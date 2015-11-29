@@ -46,6 +46,7 @@
           <span class="glyphicon glyphicon-unchecked"></span>
         <% end %>
       <% end %>
+      <span> <%= witem.checked_by.try(:name) %> </span>
     </li>
   <% end %>
 </ul>

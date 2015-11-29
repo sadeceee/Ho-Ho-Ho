@@ -1,25 +1,38 @@
-<div class="col-md-4">
-  <div class="wishlist-box">
+<script>
 
+$().ready(function function_name(argument) {
+  configureWishlistBoxHeight();
+});
 
-        <table>
-          <thead>
-          <tr>
-            <th><%= link_to wishlist.title, wishlist %></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><%= wishlist.description %></td>
-          </tr>
-            <hr>
-            <% wishlist.wishlist_items.each do |witem| %>
-              <tr>
-                <td><%=witem.title%></td>
-                <td><%=witem.price%></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-  </div>
+</script>
+
+<div class="row">
+  <% @wishlists.each do |wishlist| %>
+      <div class="col-md-4">
+        <div class="wishlist-box">
+
+          <%= link_to wishlist do %>
+              <table>
+                <thead>
+                <tr>
+                  <th><%= wishlist.title %> (<%= number_to_currency(wishlist.get_wishlist_sum) %>)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td><%= wishlist.description %></td>
+                </tr>
+                  <hr>
+                  <% wishlist.wishlist_items.each do |witem| %>
+                    <tr>
+                      <td><%=witem.title%></td>
+                      <td><%=witem.price%></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
 </div>

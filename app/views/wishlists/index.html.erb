@@ -14,6 +14,5 @@
 
 <% if (current_user) %>
     <%= link_to 'My Wishlist', user_wishlists_path(current_user.id) %> |
+    <%= link_to 'New Wishlist', new_wishlist_path %>
 <% end %>
-
-<%= link_to 'New Wishlist', new_wishlist_path %>

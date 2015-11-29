@@ -1,5 +1,4 @@
-<h1>Ho Ho Ho</h1>
-<img src="">
+<div class="image-container"><img class="header-image" src="assets/santa.png"></div>
 <div class="row">
   <% if (@wishlists.empty?) %>
       No one created any wishlist. :(
@@ -11,9 +10,3 @@
     <% end %>
   <% end %>
 </div>
-<br>
-
-<% if (current_user) %>
-    <%= link_to 'My Wishlist', user_wishlists_path(current_user.id) %> |
-    <%= link_to 'New Wishlist', new_wishlist_path %>
-<% end %>

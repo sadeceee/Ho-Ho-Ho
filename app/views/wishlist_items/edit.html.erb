@@ -1,7 +1,5 @@
 <h1>Editing wishlist item</h1>
 
-<%= render 'form' %>
+<%= render(partial: 'form', locals: {url:wishlist_wishlist_item_path(wishlist_id: @wishlist_item.wishlist.id, id: @wishlist_item.id)}) %>
 
-<%= link_to 'Show', @wishlist_item %> |
-<%= link_to 'Destroy', @wishlist_item, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', wishlists_path %>
+<%= link_to 'Back', wishlist_path(id: @wishlist_item.wishlist.id) %>

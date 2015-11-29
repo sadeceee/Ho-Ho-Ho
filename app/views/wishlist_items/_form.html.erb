@@ -1,4 +1,4 @@
-<%= form_for(@wishlist_item, url:wishlist_wishlist_items_path) do |f| %>
+<%= form_for(@wishlist_item, url: url) do |f| %>
   <% if @wishlist_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@wishlist_item.errors.count, "error") %> prohibited this wishlist from being saved:</h2>

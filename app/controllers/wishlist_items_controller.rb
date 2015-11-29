@@ -1,15 +1,16 @@
 class WishlistItemsController < ApplicationController
   # GET /wishlists
   def index
-    @wishlist_item = WishlistItems.all
+    @wishlist_item = WishlistItem.all
   end
 
   # GET /wishlists/1
   def show
-      @wishlist_item = WishlistItems.find(params[:id])
+    @wishlist_item = WishlistItem.find(params[:id])
   end
 
   def edit
+    @wishlist_item = WishlistItem.find(params[:id])
   end
 
   # GET /wishlists/new
@@ -23,18 +24,28 @@ class WishlistItemsController < ApplicationController
     @wishlist_item = WishlistItem.new(wishlist_item_params.merge(wishlist_param))
 
     if @wishlist_item.save
-      redirect_to wishlists_url, notice: 'Item was successfully created.'
+      redirect_to wishlist_path id: params[:wishlist_id], notice: 'Item was successfully created.'
     else
       render :new
     end
   end
 
-
+  def update
+    @wishlist_item = WishlistItem.find(params[:id])
+    if @wishlist_item.update_attributes wishlist_item_params
+      redirect_to wishlist_path id: params[:wishlist_id], notice: 'Wishlist Item was successfully updated.'
+    else
+      render :edit
+    end
+  end
 
   # DELETE /wishlists/1
   def destroy
-    @wishlist_item.destroy
-    redirect_to wishlists_url, notice: 'Wishlist Item was successfully destroyed.'
+    wishlist_item = WishlistItem.find(params[:id])
+    if wishlist_item
+      wishlist_item.destroy
+    end
+    redirect_to wishlist_path id: params[:wishlist_id], notice: 'Wishlist Item was successfully destroyed.'
   end
 private
   def wishlist_item_params

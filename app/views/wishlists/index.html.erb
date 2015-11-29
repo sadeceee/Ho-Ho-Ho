@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Ho Ho Ho</h1>
 <div class="row">
   <% if (@wishlists.empty?) %>
@@ -16,6 +14,6 @@
 
 <% if (current_user) %>
     <%= link_to 'My Wishlist', user_wishlists_path(current_user.id) %> |
-<% end %>
+    <%= link_to 'New Wishlist', new_wishlist_path %>
 
-<%= link_to 'New Wishlist', new_wishlist_path %>
+<% end %>

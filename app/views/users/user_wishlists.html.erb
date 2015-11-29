@@ -1,6 +1,13 @@
+<h1>My wishes</h1>
+
 <div class="row">
+
+  <% if (@user_wishlists.empty?) %>
+      You have no wishlists. :(
+  <% else %>
   <% @user_wishlists.each do |wishlist| %>
       <%= render :partial => '/wishlists/wishlist', :locals => {wishlist: wishlist} %>
+  <% end %>
   <% end %>
 </div>
 

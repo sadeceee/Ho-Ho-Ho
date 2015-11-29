@@ -27,7 +27,10 @@
 
 <ul>
   <% @wishlist.wishlist_items.each do |witem| %>
-    <li><b><%=witem.title%>:</b> <%=witem.price%> <%= link_to 'Destroy', wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :delete, data: { confirm: 'Are you sure?' } %> </li>
+    <li><b><%=witem.title%>:</b>
+      <%=witem.price%>
+      <%= link_to 'Destroy', wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Edit', edit_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id) %> </li>
   <% end %>
 </ul>
 

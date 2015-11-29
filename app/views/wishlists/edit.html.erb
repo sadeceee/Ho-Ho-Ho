@@ -10,4 +10,4 @@
 <%else %>
 You are not permitted to do that!
 <% end %>
-<%= link_to 'Back', wishlists_path %>
+<%= link_to 'Back', wishlist_path(id: @wishlist.id)  %>

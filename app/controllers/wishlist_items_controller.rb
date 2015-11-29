@@ -1,13 +1,4 @@
 class WishlistItemsController < ApplicationController
-  # GET /wishlists
-  def index
-    @wishlist_item = WishlistItem.all
-  end
-
-  # GET /wishlists/1
-  def show
-    @wishlist_item = WishlistItem.find(params[:id])
-  end
 
   def edit
     @wishlist_item = WishlistItem.find(params[:id])
@@ -30,6 +21,8 @@ class WishlistItemsController < ApplicationController
       render :new
     end
   end
+
+
 
   def update
     @wishlist_item = WishlistItem.find(params[:id])

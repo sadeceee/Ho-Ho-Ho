@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :wishlists do
-    resources :wishlist_items
+    resources :wishlist_items, except: [:index, :show]
   end
   resources :posts, only: [:index, :show]
 

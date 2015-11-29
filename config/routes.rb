@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   resources :wishlists do
-    resources :wishlist_items, except: [:index, :show]
+    resources :wishlist_items, except: [:index, :show] do
+      member do
+        put :increase_priority
+        put :decrease_priority
+      end
+    end
   end
   resources :posts, only: [:index, :show]
 

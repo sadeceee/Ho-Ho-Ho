@@ -28,6 +28,12 @@
 <ul>
   <% @wishlist.wishlist_items.each do |witem| %>
     <li>
+      <%= link_to(increase_priority_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :put) do %>
+        <font size="5" color="green">&uarr;</font>
+      <% end %>
+      <%= link_to(decrease_priority_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :put) do %>
+        <font size="5" color="red">&darr;</font>
+      <% end %>
       <%= witem.priority%>
       <b><%=witem.title%>:</b>
       <%=witem.price%> |

@@ -12,10 +12,15 @@
           <tr>
             <td><%= wishlist.description %></td>
           </tr>
-            <% wishlist.wishlist_items.each do |witem| %>
+            <% wishlist.wishlist_items.each_with_index do |witem, index| %>
               <tr>
-                <td><%=witem.title%></td>
-                <td><%=witem.price%></td>
+                <% if index < 3 %>
+                  <td><%=witem.title%></td>
+                  <td><%=witem.price%></td>
+                <% else %>
+                  <td> more..</td>
+                  <% break %>
+                <% end %>
               </tr>
             <% end %>
           </tbody>

@@ -53,7 +53,32 @@ class WishlistItemsController < ApplicationController
     end
     redirect_to wishlist_path id: params[:wishlist_id], notice: 'Wishlist Item was successfully destroyed.'
   end
+
+  def increase_priority
+    wishlist_item = WishlistItem.find(params[:id])
+    new_priority = wishlist_item.priority - 1
+    if new_priority > 0
+      wishlist_item_to_swap = wishlist_item.wishlist.wishlist_items.find_by(priority: new_priority)
+      wishlist_item.update(priority: new_priority)
+      wishlist_item_to_swap.update(priority: new_priority + 1 )
+    end
+    redirect_to wishlist_path id: params[:wishlist_id]
+  end
+
+  def decrease_priority
+    wishlist_item = WishlistItem.find(params[:id])
+    all_wishlist_items = wishlist_item.wishlist.wishlist_items
+    new_priority = wishlist_item.priority + 1
+    if new_priority < all_wishlist_items.count + 1
+      wishlist_item_to_swap = all_wishlist_items.find_by(priority: new_priority)
+      wishlist_item.update(priority: new_priority)
+      wishlist_item_to_swap.update(priority: new_priority - 1 )
+    end
+    redirect_to wishlist_path id: params[:wishlist_id]
+  end
+
 private
+
   def wishlist_item_params
     params.require(:wishlist_item).permit(:title, :price)
   end
@@ -63,8 +88,10 @@ private
   end
 
   def update_priorities
-    Wishlist.find(params[:wishlist_id]).wishlist_items.order(:priority).each_with_index do |item, index|
+    items = Wishlist.find(params[:wishlist_id]).wishlist_items
+    items.each_with_index do |item, index|
       item.update(priority: index + 1)
     end
   end
+
 end

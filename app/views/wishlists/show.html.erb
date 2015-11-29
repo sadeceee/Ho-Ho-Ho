@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @wishlist.user_id %>
+  <%= User.find_by_id(@wishlist.user_id).email %>
 </p>
 
 <p>

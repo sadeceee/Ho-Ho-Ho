@@ -10,13 +10,14 @@
           </thead>
           <tbody>
           <tr>
-            <td><%= wishlist.description %></td>
+            <td><%=  wishlist.description  %></td>
           </tr>
             <% wishlist.wishlist_items.each_with_index do |witem, index| %>
               <tr>
                 <% if index < 3 %>
-                  <td><%=witem.title%></td>
-                  <td><%=witem.price%></td>
+                  <td id="point">-</td>
+                  <td id="title"><%= witem.title %></td>
+                  <td id="price"><%= number_to_currency(witem.price) %></td>
                 <% else %>
                   <td> more..</td>
                   <% break %>

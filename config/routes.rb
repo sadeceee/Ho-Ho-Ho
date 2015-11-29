@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :wishlists do
     resources :wishlist_items, except: [:index, :show] do
       member do
+        put :toggle_check
         put :increase_priority
         put :decrease_priority
       end

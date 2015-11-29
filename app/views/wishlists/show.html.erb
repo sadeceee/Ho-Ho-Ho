@@ -35,6 +35,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
   <% @wishlist.wishlist_items.each do |witem| %>
     <tr>
@@ -57,7 +58,16 @@
       <td>
         <%= link_to 'Edit', edit_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id) %>
       </td>
-      <td><%= check_box 'Support', 'validated' %></td>
+      <td>
+        <%= link_to(toggle_check_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id, checked_by_id: current_user.id), method: :put) do  %>
+          <% if witem.checked_by_id.present?%>
+            <span class="glyphicon glyphicon-check"></span>
+          <% else %>
+            <span class="glyphicon glyphicon-unchecked"></span>
+          <% end %>
+        <% end %>
+      </td>
+      <td><span> <%= witem.checked_by.try(:name) %> </span></td>
     </tr>
   <% end %>
 </table>

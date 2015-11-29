@@ -22,6 +22,19 @@ class WishlistItemsController < ApplicationController
     end
   end
 
+  def toggle_check
+    @wishlist_item = WishlistItem.find(params[:id])
+    if @wishlist_item.checked_by_id.present? && current_user.id == @wishlist_item.checked_by_id
+      @wishlist_item.update_attributes(checked_by_id: nil)
+    elsif @wishlist_item.checked_by_id.present? && current_user.id != @wishlist_item.checked_by_id
+      redirect_to wishlist_path id: params[:wishlist_id], notice: 'Wishlist Item was checked by someone else.'
+      return
+    else
+      @wishlist_item.update_attributes(checked_by_id: params[:checked_by_id])
+    end
+    redirect_to wishlist_path id: params[:wishlist_id], notice: 'Wishlist Item was successfully checked.'
+  end
+
   def update
     @wishlist_item = WishlistItem.find(params[:id])
     if @wishlist_item.update_attributes wishlist_item_params

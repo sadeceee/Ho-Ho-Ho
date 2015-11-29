@@ -23,7 +23,7 @@ class WishlistItemsController < ApplicationController
     @wishlist_item = WishlistItem.new(wishlist_item_params.merge(wishlist_param))
 
     if @wishlist_item.save
-      redirect_to wishlists_url, notice: 'Item was successfully created.'
+      redirect_to wishlist_path id: params[:wishlist_id], notice: 'Item was successfully created.'
     else
       render :new
     end
@@ -32,7 +32,7 @@ class WishlistItemsController < ApplicationController
   # DELETE /wishlists/1
   def destroy
     WishlistItem.find_by(wishlist_id: params[:wishlist_id], id: params[:id]).destroy
-    redirect_to wishlists_url, notice: 'Wishlist Item was successfully destroyed.'
+    redirect_to wishlist_path id: params[:wishlist_id], notice: 'Wishlist Item was successfully destroyed.'
   end
 private
   def wishlist_item_params

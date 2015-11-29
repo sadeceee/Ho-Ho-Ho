@@ -25,28 +25,45 @@
   <strong> Items:</strong>
 </p>
 
-<ul>
+<table class="table table-striped" style="width:70%">
+  <tr>
+    <th></th>
+    <th></th>
+    <th>Priority</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
   <% @wishlist.wishlist_items.each do |witem| %>
-    <li>
-      <%= link_to(increase_priority_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :put) do %>
-        <font size="5" color="green">&uarr;</font>
-      <% end %>
-      <%= link_to(decrease_priority_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :put) do %>
-        <font size="5" color="red">&darr;</font>
-      <% end %>
-      <%= witem.priority%>
-      <b><%=witem.title%>:</b>
-      <%=witem.price%>
-      <%= link_to 'Destroy', wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-      <%= link_to 'Edit', edit_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id) %>
-      <%= check_box 'Support', 'validated' %>
-    </li>
+    <tr>
+      <td align="middle">
+        <%= link_to(increase_priority_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :put) do %>
+          <font size="5" color="green">&uarr;</font>
+        <% end %>
+      </td>
+      <td align="middle">
+        <%= link_to(decrease_priority_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :put) do %>
+          <font size="5" color="red">&darr;</font>
+        <% end %>
+      </td>
+      <td align="middle"><%= witem.priority %></td>
+      <td><%= witem.title %></td>
+      <td><%= witem.price %></td>
+      <td>
+        <%= link_to 'Destroy', wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+      <td>
+        <%= link_to 'Edit', edit_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id) %>
+      </td>
+      <td><%= check_box 'Support', 'validated' %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
 
 <% if current_user && (current_user.id == @wishlist.user_id)  %>
-
-<%= link_to 'Edit', edit_wishlist_path(@wishlist) %> |
-<%= link_to 'Add item', new_wishlist_wishlist_item_path(@wishlist) %> |
+  <%= link_to 'Edit', edit_wishlist_path(@wishlist) %> |
+  <%= link_to 'Add item', new_wishlist_wishlist_item_path(@wishlist) %> |
 <% end %>
 <%= link_to 'Back', wishlists_path %>

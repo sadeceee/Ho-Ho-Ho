@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :wishlists do
-    resources :wishlist_items, except: [:index, :show]
+    resources :wishlist_items, except: [:index, :show] do
+      member do
+        put :toggle_check
+      end
+    end
   end
   resources :posts, only: [:index, :show]
 

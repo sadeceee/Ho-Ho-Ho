@@ -30,10 +30,16 @@
     <li>
       <%= witem.priority%>
       <b><%=witem.title%>:</b>
-      <%=witem.price%>
-      <%= link_to 'Destroy', wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-      <%= link_to 'Edit', edit_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id) %>
-      <%= check_box 'Support', 'validated' %>
+      <%=witem.price%> |
+      <%= link_to 'Destroy', wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :delete, data: { confirm: 'Are you sure?' } %> |
+      <%= link_to 'Edit', edit_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id) %> |
+      <%= link_to(toggle_check_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id, checked_by_id: current_user.id), method: :put) do  %>
+        <% if witem.checked_by_id.present?%>
+          <span class="glyphicon glyphicon-check"></span>
+        <% else %>
+          <span class="glyphicon glyphicon-unchecked"></span>
+        <% end %>
+      <% end %>
     </li>
   <% end %>
 </ul>

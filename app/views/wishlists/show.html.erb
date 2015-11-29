@@ -27,14 +27,21 @@
 
 <table class="table table-striped" style="width:70%">
   <tr>
-    <th></th>
-    <th></th>
-    <th>Priority</th>
-    <th>Description</th>
+    <% if current_user && @wishlist.user_id == current_user.id %>
+      <th></th>
+      <th></th>
+      <th>Priority</th>
+    <% end %>
+    <th>Title</th>
     <th>Price</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <% if current_user && @wishlist.user_id == current_user.id %>
+      <th></th>
+      <th></th>
+    <% end %>
+
+    <% if current_user %>
+      <th></th>
+    <% end %>
     <th></th>
   </tr>
   <% @wishlist.wishlist_items.each do |witem| %>
@@ -50,10 +57,11 @@
             <font size="5" color="red">&darr;</font>
           <% end %>
         </td>
-      <td align="middle"><%= witem.priority %></td>
+        <td align="middle"><%= witem.priority %></td>
       <% end %>
       <td><%= witem.title %></td>
       <td><%= witem.price %></td>
+
       <% if current_user && @wishlist.user_id == current_user.id %>
         <td>
           <%= link_to 'Destroy', wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id), method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -62,15 +70,19 @@
           <%= link_to 'Edit', edit_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id) %>
         </td>
       <% end %>
-      <td>
-        <%= link_to(toggle_check_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id, checked_by_id: current_user.id), method: :put) do  %>
-          <% if witem.checked_by_id.present?%>
-            <span class="glyphicon glyphicon-check"></span>
-          <% else %>
-            <span class="glyphicon glyphicon-unchecked"></span>
+
+      <% if current_user %>
+        <td>
+          <%= link_to(toggle_check_wishlist_wishlist_item_path(wishlist_id: @wishlist.id, id: witem.id, checked_by_id: current_user.id), method: :put) do  %>
+            <% if witem.checked_by_id.present?%>
+              <span class="glyphicon glyphicon-check"></span>
+            <% else %>
+              <span class="glyphicon glyphicon-unchecked"></span>
+            <% end %>
           <% end %>
-        <% end %>
-      </td>
+        </td>
+      <% end %>
+
       <td><span> <%= witem.checked_by.try(:name) %> </span></td>
     </tr>
   <% end %>
